@@ -20,7 +20,7 @@ button.addEventListener("click", () => {
         break;
     }
   };
-  if (input && input.value && input.value.length > 0) {
+  if (input && input.value && input.value.length > 0 && div.innerText !== "解析中...") {
     req.open('GET', input.value);
     req.send();
     div.innerText = "解析中...";
