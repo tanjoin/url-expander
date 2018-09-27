@@ -8,7 +8,9 @@ button.addEventListener("click", () => {
     switch (req.readyState) {
       case 4:
         let contentType = req.getResponseHeader("Content-Type");
-        if (!/text\/html/.test(contentType)) {
+        if (contentType === null) {
+          div.innerText = "展開できません";
+        } else if (!/text\/html/.test(contentType)) {
           if (/image\//.test(contentType)) {
             div.innerText = "画像です";
           } else if (/json/.test(contentType)) {
