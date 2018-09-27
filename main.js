@@ -21,3 +21,7 @@ button.addEventListener("click", () => {
     req.send();
   }
 });
+
+window.onload = () => {
+  input.value = "";
+};
