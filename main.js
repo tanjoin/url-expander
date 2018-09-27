@@ -21,8 +21,9 @@ button.addEventListener("click", () => {
     }
   };
   if (input && input.value && input.value.length > 0) {
-    req.open('GET', input.value, false);
+    req.open('GET', input.value);
     req.send();
+    div.innerText = "解析中...";
   }
 });
 
