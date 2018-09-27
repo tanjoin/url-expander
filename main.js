@@ -7,13 +7,20 @@ button.addEventListener("click", () => {
   req.onreadystatechange = () => {
     switch (req.readyState) {
       case 4:
-        if (req.status === 304) {
+        let contentType = req.getResponseHeader("Content-Type");
+        if (!/text\/html/.test(contentType)) {
+          if (/image\//.test(contentType)) {
+            div.innerText = "画像です";
+          } else if (/json/.test(contentType)) {
+            div.innerText = "JSONです";
+          } else {
+            div.innerText = contentType + " 形式のデータです";
+          }
+        } else if (req.status === 304 || req.status === 200) {
           var data = req.responseText;
           div.innerText = data;
           var result = data.match(/https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+/g)[0];
           div.innerText = result;
-        } else if (req.status === 200) {
-          div.innerText = req.responseType;
         } else {
           div.innerText = "展開できません";
         }
