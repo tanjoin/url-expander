@@ -3,10 +3,10 @@ const button = document.getElementById('fuga');
 const input = document.getElementById('piyo');
 
 button.addEventListener("click", () => {
-	let req = new XMLHttpRequest();
-	req.onreadystatechange = () => {
-  	switch (req.readyState) {
-    	case 4:
+  let req = new XMLHttpRequest();
+  req.onreadystatechange = () => {
+    switch (req.readyState) {
+      case 4:
         if (req.status === 200 || req.status === 304) {
           var data = req.responseText;
           div.innerText = data;
@@ -16,6 +16,8 @@ button.addEventListener("click", () => {
         break;
     }
   };
-  req.open('GET', input.value, false);
-  req.send();
+  if (input && input.value && input.value.length > 0) {
+    req.open('GET', input.value, false);
+    req.send();
+  }
 });
